@@ -14,6 +14,7 @@ O objetivo porposto era subir uma máquina virtual Linux, preparar um ambiente w
 
 ## O que foi feito 
 1. O primeiro passo realizado foi a **Conexão da VM através do SSH**, fazendo a verificação das suas configurações também através dos comandos abaixo
+
 | Comando | Detalhe |
 |---|---|
 | cat /etc/os-release | Utilizado para confirmar se os pacotes e comandos usados seriam compativeis na nossa máquina |
@@ -23,6 +24,7 @@ O objetivo porposto era subir uma máquina virtual Linux, preparar um ambiente w
 2. O segundo passo foi realizar a instalação do Apache e do PHP através do comando **dnf install httpd php -y**, incluindo o PHP-FPM como um processador do PHP.
 
 3. O terceiro passo foi fazer a ativação dos serviços (httpd e php-fpm) com os comandos abaixo, fazendo com que o **httpd e php-fpm** iniciem junto com o sistema.
+
 | Comando | Detalhe |
 |---|---|
 | systemctl start | Utilizado para iniciar um serviço imediatamente |
@@ -34,6 +36,7 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
     - O ambiente Servidor, utilizando a função php_uname().
     - O software do Servidor web $_SERVER['SERVER_SOFTWARE'].
     - A data e a hora geradas no servidor no momento que for feita a requisição date().
+
 | Comando | Detalhe |
 |---|---|
 | php_uname() | Função usada para retornar as insformações sobre o sistema operacional onde o PHP está rodando |
@@ -41,6 +44,7 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
 | date() | Utilizado para retornar a data e a hora de acordo com a forma que é informado |
 
 5. O quinto passo foi o ajuste das permissões dos arquivos através dos comandos chown apache:apache, chmod 755 para que o apache possa ler o conteúdo publicado.
+
 | Comando | Detalhe |
 |---|---|
 | chown apache:apache | chown (*change owner*) muda o dono e o grupo de um arquivo ou pasta, nesse caso foi transferido a posse de /var/www/html para o usuário apache|
