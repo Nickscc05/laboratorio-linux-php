@@ -63,6 +63,8 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
 
 A requisição segue sempre um caminho fixo para termos o resultado esperado, primeiro o navegador deve acessar **http://<IP-da-VM>/index.php**, após isso o Apache vai identificar o arquívo PHP e ira encaminhar a execução para o gerenciador de processos (PHP-FPM), responsável por executar/interpretar o código PHP. O PHP-FPM vai processar o código e gerar o HTML puro comoo resultado e devolve ao Apache, que por fim vai enviar a resposta ao navegador. 
 
+![alt text](image.png)
+
 ## Conceitos Praticados 
 
 Foi escolhido o **Rocky Linux** é uma distribuição da RHEL (Red Hat Entrerprise Linux), possui código aberto mas mantém sua compatibilidade com a RHEL, foi instruido pelos gestores e adotei ela para proseeguir com a VM. 
