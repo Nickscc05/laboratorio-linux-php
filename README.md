@@ -38,10 +38,10 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
 
 ![alt text](<Captura de tela 2026-09-08 153406.png>)
 
-4. O quarto passo foi realizar a *criação do index.php*, onde deveriamos exibir de forma dinâmica: 
-    - O ambiente Servidor, utilizando a função php_uname().
-    - O software do Servidor web $_SERVER['SERVER_SOFTWARE'].
-    - A data e a hora geradas no servidor no momento que for feita a requisição date().
+4. O quarto passo foi realizar a **criação do index.php**, onde deveriamos exibir de forma dinâmica: 
+    - O ambiente Servidor, utilizando a função **php_uname()**.
+    - O software do Servidor web **$_SERVER['SERVER_SOFTWARE']**.
+    - A data e a hora geradas no servidor no momento que for feita a requisição **date()**.
 
 ![alt text](<Captura de tela 2026-09-09 135519.png>)
 
@@ -51,7 +51,7 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
 | $_SERVER['SERVER_SOFTWARE'] | É uma variável especial do PHP chamada *superglobal*, nos devolve informações sobre a requisição e o próprio servidor a chave 'SERVER_SOFTWARE' traz o nome e a versão do software que está servindo a página |
 | date() | Utilizado para retornar a data e a hora de acordo com a forma que é informado |
 
-5. O quinto passo foi o ajuste das permissões dos arquivos através dos comandos chown apache:apache, chmod 755 para que o apache possa ler o conteúdo publicado.
+5. O quinto passo foi o ajuste das permissões dos arquivos através dos comandos **chown apache:apache**, **chmod 755** para que o apache possa ler o conteúdo publicado.
 
 | Comando | Detalhe |
 |---|---|
@@ -81,4 +81,4 @@ A requisição segue sempre um caminho fixo para termos o resultado esperado, pr
 
 Foi escolhido o **Rocky Linux** é uma distribuição da RHEL (Red Hat Entrerprise Linux), possui código aberto mas mantém sua compatibilidade com a RHEL, foi instruido pelos gestores e adotei ela para proseeguir com a VM. 
 
-O Apache foi escolhido pois é um pouco mais simples e possui bastante documentação o que ajuda caso surjam dúvidas, foi mais simples para realizar o processamento do PHP pois a integração entre o servidor web e o PHP-FPM vem configurada automaticamente ao instalar o pacote php no Rocky.
+O **Apache** foi escolhido pois é um pouco mais simples e possui bastante documentação o que ajuda caso surjam dúvidas, foi mais simples para realizar o processamento do PHP pois a integração entre o servidor web e o PHP-FPM vem configurada automaticamente ao instalar o pacote php no Rocky.
