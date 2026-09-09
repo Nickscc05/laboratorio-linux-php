@@ -21,6 +21,8 @@ O objetivo porposto era subir uma máquina virtual Linux, preparar um ambiente w
 | free -h | Utilizado para passar informações sobre a memória RAM do sistema|
 | df -h | Utilizado para mostar o espaço em disco de cada partição montada |
 
+![alt text](image-1.png)
+
 2. O segundo passo foi realizar a instalação do Apache e do PHP através do comando **dnf install httpd php -y**, incluindo o PHP-FPM como um processador do PHP.
 
 3. O terceiro passo foi fazer a ativação dos serviços (httpd e php-fpm) com os comandos abaixo, fazendo com que o **httpd e php-fpm** iniciem junto com o sistema.
@@ -30,12 +32,18 @@ O objetivo porposto era subir uma máquina virtual Linux, preparar um ambiente w
 | systemctl start | Utilizado para iniciar um serviço imediatamente |
 | systemctl enable | Utilizado para ativar a função que fará o serviço iniciar automaticamente |
 
+![alt text](<Captura de tela 2026-09-08 153021.png>)
+
 O teste foi feito após a ativação e foi visto que realmente passou a ser iniciado automáticamente. 
+
+![alt text](<Captura de tela 2026-09-08 153406.png>)
 
 4. O quarto passo foi realizar a *criação do index.php*, onde deveriamos exibir de forma dinâmica: 
     - O ambiente Servidor, utilizando a função php_uname().
     - O software do Servidor web $_SERVER['SERVER_SOFTWARE'].
     - A data e a hora geradas no servidor no momento que for feita a requisição date().
+
+![alt text](<Captura de tela 2026-09-09 135519.png>)
 
 | Comando | Detalhe |
 |---|---|
@@ -50,11 +58,15 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
 | chown apache:apache | chown (*change owner*) muda o dono e o grupo de um arquivo ou pasta, nesse caso foi transferido a posse de /var/www/html para o usuário apache|
 | chmod 755 | Define as permissões de leitura, escrita e execução para três grupos: dono, grupo e outros 7 (dono) 5 (grupo) 5 (outros) |
 
+![alt text](image-2.png)
+
 6. O sexto passo foi realizar a **liberação da posta HTTP (80)** no firewall com o comando **firewall-cmd --add-service=http**
 
 | Comando | Detalhe |
 |---|---|
 | firewall-cmd --add-service=http | Esse comando libera a porta 80 (usada pelo protocolo HTTP) no firewall da VM, usando o perfil de serviço pré configurado chamado http (sem essa liberação mesmo com o Apache rodando corretamente, o firewall iria bloquear por padrão tudo o que não é permitido)|
+
+![alt text](image-3.png)
 
 7. No sétimo passo foi realizado a validação no navegador, confirmando a mensagem inserida e os dados dinâmicos.
 
