@@ -60,7 +60,7 @@ O teste foi feito após a ativação e foi visto que realmente passou a ser inic
 
 ![alt text](image-2.png)
 
-6. O sexto passo foi realizar a **liberação da posta HTTP (80)** no firewall com o comando **firewall-cmd --add-service=http**
+6. O sexto passo foi realizar a **liberação da porta HTTP (80)** no firewall com o comando **firewall-cmd --add-service=http**
 
 | Comando | Detalhe |
 |---|---|
