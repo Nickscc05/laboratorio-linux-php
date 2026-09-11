@@ -86,7 +86,7 @@ O **Apache** foi escolhido pois é um pouco mais simples e possui bastante docum
 
 ## Configuração de HTTPS com certificado autoassinado
 
-Como parte extra do treinamento, o supervisor solicitou a configuração de HTTPS no Apache, usando um certificado autoassinado (self-signed).
+Foi instruido fazer um teste de configuração de HTTPS no Apache, usando um certificado autoassinado (self-signed).
 
 ### Conceito
 
@@ -145,5 +145,7 @@ HTTP transmite dados em texto puro, sem criptografia. HTTPS adiciona uma camada 
    Acesso via `https://IP DA MÁQUINA/index.php`, apresentando o aviso esperado de certificado não confiável (por ser autoassinado). Após aceitar o aviso, a página carregou normalmente, agora com a conexão criptografada.
 
 ### Resultado
+
+![alt text](<Captura de tela 2026-09-10 161220.png>)
 
 A aplicação passou a responder tanto em HTTP (porta 80) quanto em HTTPS (porta 443), com o tráfego da versão HTTPS sendo criptografado através do certificado autoassinado gerado.
