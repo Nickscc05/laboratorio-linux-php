@@ -119,8 +119,8 @@ HTTP transmite dados em texto puro, sem criptografia. HTTPS adiciona uma camada 
 3. **Configuração do Apache para usar o certificado**
 
    Editado o arquivo `/etc/httpd/conf.d/ssl.conf`, apontando as diretivas para os arquivos gerados:
-   **SSLCertificateFile /etc/pki/tls/certs/app-php.crt**
-   **SSLCertificateKeyFile /etc/pki/tls/private/app-php.key**
+  - **SSLCertificateFile /etc/pki/tls/certs/app-php.crt**
+  - **SSLCertificateKeyFile /etc/pki/tls/private/app-php.key**
 
    
 4. **Liberação da porta HTTPS (443) no firewall**
