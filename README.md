@@ -106,10 +106,14 @@ HTTP transmite dados em texto puro, sem criptografia. HTTPS adiciona uma camada 
      -keyout /etc/pki/tls/private/app-php.key \
      -out /etc/pki/tls/certs/app-php.crt
 ```
-   - `-x509`: gera diretamente um certificado autoassinado
-   - `-nodes`: não protege a chave privada com senha (necessário para o Apache iniciar sem intervenção manual)
-   - `-days 365`: validade de 1 ano
-   - `-newkey rsa:2048`: gera uma chave nova, usando RSA de 2048 bits
+
+| Comando | Detalhe |
+|---|---|
+| -x509 | gera diretamente um certificado autoassinado|
+| nodes | não protege a chave privada com senha (necessário para o Apache iniciar sem intervenção manual) |
+| days 365 | validade de 1 ano |
+| newkey rsa:2048 | gera uma chave nova, usando RSA de 2048 bits |  
+
    - No campo **Common Name**, foi informado o IP da VM, pois é esse valor que o navegador compara com o endereço acessado
 
 3. **Configuração do Apache para usar o certificado**
