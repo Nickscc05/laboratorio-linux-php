@@ -110,9 +110,9 @@ HTTP transmite dados em texto puro, sem criptografia. HTTPS adiciona uma camada 
 | Comando | Detalhe |
 |---|---|
 | -x509 | gera diretamente um certificado autoassinado|
-| nodes | não protege a chave privada com senha (necessário para o Apache iniciar sem intervenção manual) |
-| days 365 | validade de 1 ano |
-| newkey rsa:2048 | gera uma chave nova, usando RSA de 2048 bits |  
+| -nodes | não protege a chave privada com senha (necessário para o Apache iniciar sem intervenção manual) |
+| -days 365 | validade de 1 ano |
+| -newkey rsa:2048 | gera uma chave nova, usando RSA de 2048 bits |  
 
    - No campo **Common Name**, foi informado o IP da VM, pois é esse valor que o navegador compara com o endereço acessado
 
