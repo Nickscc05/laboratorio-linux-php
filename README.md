@@ -82,3 +82,64 @@ A requisição segue sempre um caminho fixo para termos o resultado esperado, pr
 Foi escolhido o **Rocky Linux** é uma distribuição da RHEL (Red Hat Entrerprise Linux), possui código aberto mas mantém sua compatibilidade com a RHEL, foi instruido pelos gestores e adotei ela para proseeguir com a VM. 
 
 O **Apache** foi escolhido pois é um pouco mais simples e possui bastante documentação o que ajuda caso surjam dúvidas, foi mais simples para realizar o processamento do PHP pois a integração entre o servidor web e o PHP-FPM vem configurada automaticamente ao instalar o pacote php no Rocky.
+
+
+## Configuração de HTTPS com certificado autoassinado
+
+Como parte extra do treinamento, o supervisor solicitou a configuração de HTTPS no Apache, usando um certificado autoassinado (self-signed).
+
+### Conceito
+
+HTTP transmite dados em texto puro, sem criptografia. HTTPS adiciona uma camada de criptografia (TLS/SSL) sobre o HTTP, exigindo um certificado digital no servidor. Um certificado autoassinado é gerado e "assinado" pela própria máquina, sem depender de uma Autoridade Certificadora (CA) externa — funciona perfeitamente para criptografar o tráfego, mas o navegador exibe um aviso de "conexão não segura", já que não reconhece a autoridade que assinou o certificado. É o padrão utilizado em ambientes de laboratório, teste e desenvolvimento interno.
+
+### O que foi feito
+
+1. **Instalação do módulo SSL do Apache e do OpenSSL**
+```bash
+   sudo dnf install mod_ssl openssl -y
+```
+   O suporte a HTTPS não vem por padrão no Apache — é necessário o módulo `mod_ssl`. O `openssl` é a ferramenta usada para gerar o certificado.
+
+2. **Geração da chave privada e do certificado autoassinado**
+```bash
+   sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+     -keyout /etc/pki/tls/private/app-php.key \
+     -out /etc/pki/tls/certs/app-php.crt
+```
+   - `-x509`: gera diretamente um certificado autoassinado
+   - `-nodes`: não protege a chave privada com senha (necessário para o Apache iniciar sem intervenção manual)
+   - `-days 365`: validade de 1 ano
+   - `-newkey rsa:2048`: gera uma chave nova, usando RSA de 2048 bits
+   - No campo **Common Name**, foi informado o IP da VM, pois é esse valor que o navegador compara com o endereço acessado
+
+3. **Configuração do Apache para usar o certificado**
+
+   Editado o arquivo `/etc/httpd/conf.d/ssl.conf`, apontando as diretivas para os arquivos gerados:
+   **SSLCertificateFile /etc/pki/tls/certs/app-php.crt**
+   **SSLCertificateKeyFile /etc/pki/tls/private/app-php.key**
+
+   
+4. **Liberação da porta HTTPS (443) no firewall**
+```bash
+   sudo firewall-cmd --permanent --add-service=https
+   sudo firewall-cmd --reload
+```
+
+5. **Confirmação do contexto do SELinux**
+```bash
+   sudo restorecon -Rv /etc/pki/tls/
+```
+
+6. **Reinício do Apache**
+```bash
+   sudo systemctl restart httpd
+```
+   Confirmado nos logs que o serviço passou a escutar em duas portas: `port 443, port 80`.
+
+7. **Validação no navegador**
+
+   Acesso via `https://IP DA MÁQUINA/index.php`, apresentando o aviso esperado de certificado não confiável (por ser autoassinado). Após aceitar o aviso, a página carregou normalmente, agora com a conexão criptografada.
+
+### Resultado
+
+A aplicação passou a responder tanto em HTTP (porta 80) quanto em HTTPS (porta 443), com o tráfego da versão HTTPS sendo criptografado através do certificado autoassinado gerado.
