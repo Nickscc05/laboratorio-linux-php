@@ -21,7 +21,7 @@ O objetivo proposto era subir uma máquina virtual Linux, preparar um ambiente w
 | free -h | Utilizado para passar informações sobre a memória RAM do sistema |
 | df -h | Utilizado para mostar o espaço em disco de cada partição montada |
 
-![alt text](image-1.png)
+
 
 2. O segundo passo foi realizar a instalação do Apache e do PHP através do comando **dnf install httpd php -y**, incluindo o PHP-FPM como um processador do PHP.
 
@@ -32,11 +32,11 @@ O objetivo proposto era subir uma máquina virtual Linux, preparar um ambiente w
 | systemctl start | Utilizado para iniciar um serviço imediatamente |
 | systemctl enable | Utilizado para ativar a função que fará o serviço iniciar automaticamente |
 
-![alt text](<Captura de tela 2026-09-08 153021.png>)
+
 
 O teste foi feito após a ativação e foi visto que realmente passou a ser iniciado automáticamente. 
 
-![alt text](<Captura de tela 2026-09-08 153406.png>)
+
 
 4. O quarto passo foi realizar a **criação do index.php**, onde deveriamos exibir de forma dinâmica: 
     - O ambiente Servidor, utilizando a função **php_uname()**.
